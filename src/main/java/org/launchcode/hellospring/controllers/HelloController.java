@@ -10,20 +10,34 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Created by Chris Bay
  */
 @Controller
-public class HelloSpringController {
+public class HelloController {
 
-    // Responds to /hello?name=LaunchCode
+    //    // Handle request at path /hello
+//    @GetMapping("hello")
+//    @ResponseBody
+//    public String hello() {
+//        return "Hello, Spring!";
+//    }
+
+    @GetMapping("goodbye")
+    @ResponseBody
+    public String goodbye() {
+        return "Goodbye, Spring!";
+    }
+
+    // Handles requests of the form /hello?name=LaunchCode
     @GetMapping("hello")
     @ResponseBody
-    public String hello(@RequestParam String name) {
+    public String helloWithQueryParam(@RequestParam String name) {
         return "Hello, " + name + "!";
     }
 
-    // Responds to /hello/LaunchCode
+    // Handles requests of the form /hello/LaunchCode
     @GetMapping("hello/{name}")
     @ResponseBody
-    public String helloAgain(@PathVariable String name) {
+    public String helloWithPathParam(@PathVariable String name) {
         return "Hello, " + name + "!";
     }
+
 
 }
