@@ -8,12 +8,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Created by Chris Bay
  */
 @Controller
-public class HelloSpringController {
+public class HelloController {
 
+    // Handle request at path /hello
     @GetMapping("hello")
     @ResponseBody
     public String hello() {
         return "Hello, Spring!";
+    }
+
+    @GetMapping("goodbye")
+    @ResponseBody
+    public String goodbye() {
+        return "Goodbye, Spring!";
     }
 
 }
