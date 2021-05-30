@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("hello")
 public class HelloController {
 
-    //    // Handle request at path /hello
+    // Handle request at path /hello
 //    @GetMapping("hello")
 //    @ResponseBody
 //    public String hello() {
@@ -24,6 +24,7 @@ public class HelloController {
         return "Goodbye, Spring!";
     }
 
+    //lives /hello/hello
     // Handles requests of the form /hello?name=LaunchCode
     @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST})
     public String helloWithQueryParam(@RequestParam String name) {
