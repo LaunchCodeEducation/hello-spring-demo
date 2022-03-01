@@ -20,11 +20,11 @@ public class HelloController {
 
 //
 
-    // Handles requests of the form /hello?name=LaunchCode
-    @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST})
-    public String helloWithQueryParam(@RequestParam String name) {
-        return "Hello, " + name + "!";
-    }
+//    // Handles requests of the form /hello?name=LaunchCode
+//    @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST})
+//    public String helloWithQueryParam(@RequestParam String name) {
+//        return "Hello, " + name + "!";
+//    }
 
     // Handles requests of the form /hello/LaunchCode
     @GetMapping("{name}")
@@ -32,48 +32,50 @@ public class HelloController {
         return "Hello, " + name + "!";
     }
 
-    //Exercises
-    @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST}, value = "language")
-    public String createMessage(@RequestParam String name,String language ) {
-        if (language == "Fin") {
-            return "Moi, " + name + "!";
-        } else if (language.equals("Tag")) {
-            return "Kumusta " + name + "!";
-        } else if (language.equals("Po")) {
-            return "Siema " + name + "!";
-        } else if (language.equals( "Ir")) {
-            return "Dia duit " + name + "!";
-        } else if (language.equals("Si")) {
-            return "Subha davasak " + name + "!";
-        } else {
-            return "Hello!";
-        }
-    }
 
     // /hello/form
-    @GetMapping("form")
+  @RequestMapping(value="hello", method = RequestMethod.GET)
     public String helloForm() {
         return "<html>" +
                 "<body>" +
-                "<form action = '/hello' method = 'post'>" + // submit a request to /hello
-                "<input type = 'text' name = 'name' >" +
-                "<select name = 'language' id='lang-select'>" +
-                "<option selected=''>--Please choose an option--</option>" +
-                "<option selected='Fin'>Finnish</option>" +
-//       Moi (hi)
-                "<option value = 'Tag'>Tagalog</option>" +
-//        Kumusta (hi/hello)
+                "<form method = 'post'>" + // submit a request to /hello
+                "<input type = 'text' name = 'name' />" +
+                "</br></br>" +
+                "<select name = 'language' id='lang'>" +
+                "<option value = 'Fi'>Finnish</option>" +
+                "<option value = 'Ta'>Tagalog</option>" +
                 "<option value = 'Po'>Polish</option>" +
-//        Siema (like 'howdy')
-                "<option value ='Ir'>Irish</option> " +
-//        Dia duit (hello)
+                "<option value = 'Ir'>Irish</option>" +
                 "<option value = 'Si'>Sinhala</option>" +
-//        Subha davasak (hello)
                 "</select>" +
+                "</br></br>" +
                 "<input type = 'submit' value = 'Greet Me!' >" +
                 "</form>" +
                 "</body>" +
                 "</html>";
+    }
+
+//    Exercises
+    @RequestMapping(method = RequestMethod.POST, value = "hello")
+    public static String createMessage(@RequestParam String name, @RequestParam String language ) {
+        if(name.equals("")){
+            name = "World";
+        }
+        String greeting = "";
+
+        if (language.equals("Fi")) {
+            greeting =  "Moi, ";
+        } else if (language.equals("Ta")) {
+            greeting = "Kumusta, ";
+        } else if (language.equals("Po")) {
+            greeting = "Siema, ";
+        } else if (language.equals( "Ir")) {
+            greeting = "Dia duit, ";
+        } else if (language.equals("Si")) {
+            greeting = "Subha davasak, ";
+        }
+
+        return greeting + name + "!";
     }
 
 }
